@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="fill_parent"
+	android:layout_width="fill_parent"
+	android:background="@drawable/illbebacklandscape"
+	android:padding="15dip"
+	android:orientation="horizontal">
+	<LinearLayout android:orientation="vertical"
+		android:layout_height="fill_parent" 
+		android:layout_width="fill_parent"
+		android:layout_gravity="top" 
+		android:paddingLeft="20dip"
+		android:paddingRight="20dip">
+		
+		<TableLayout
+			android:layout_width="match_parent" 
+			android:layout_height="wrap_content"
+			android:layout_gravity="center"
+			android:gravity="top"
+			android:stretchColumns="*">
+			<TableRow>
+				<TextView
+					android:id="@+id/eventIdLabel"
+					android:text="@string/eventIdLabel"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content" />
+				
+				<EditText
+					android:id="@+id/eventFoundEditText"
+					android:layout_width="280dip"
+					android:layout_height="wrap_content"
+					android:inputType="text" />		
+			</TableRow>
+		</TableLayout>
+					
+		<TableLayout
+			android:layout_width="wrap_content" 
+			android:layout_height="match_parent"
+			android:layout_gravity="center"
+			android:layout_alignParentBottom="true"
+			android:gravity="bottom"
+			android:stretchColumns="*">
+			<TableRow>
+				<Button 
+					android:text="@string/scanForEvent"
+					android:id="@+id/BarcodeButton"
+					android:layout_weight="1" 
+					android:layout_width="0dip"/>				
+				<Button
+					android:text="@string/sendEvent"
+					android:id="@+id/sendEventButton"
+					android:layout_weight="1" 
+					android:layout_width="0dip"/>
+				<Button 
+					android:text="@string/downloadApp"
+					android:id="@+id/downloadAppButton"
+					android:layout_weight="1" 
+					android:layout_width="0dip" />
+			</TableRow>
+			</TableLayout>
+		</LinearLayout>
+</LinearLayout>
