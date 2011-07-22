@@ -63,8 +63,6 @@ public final class R {
         public static final int done_button=0x7f070021;
         public static final int downloadAppButton=0x7f070026;
         public static final int encode_view=0x7f07001d;
-        public static final int eventFoundEditText=0x7f070023;
-        public static final int eventIdLabel=0x7f070022;
         public static final int format_text_view=0x7f070011;
         public static final int format_text_view_label=0x7f070010;
         public static final int help_contents=0x7f07001f;
@@ -83,6 +81,8 @@ public final class R {
         public static final int result_list_view=0x7f07002a;
         public static final int result_view=0x7f07000e;
         public static final int return_scan_result=0x7f070007;
+        public static final int scanResultsEditText=0x7f070023;
+        public static final int scanResultsTextView=0x7f070022;
         public static final int search_book_contents_failed=0x7f070008;
         public static final int search_book_contents_succeeded=0x7f070009;
         public static final int sendEventButton=0x7f070025;
@@ -154,7 +154,6 @@ public final class R {
         public static final int contents_sms=0x7f080023;
         public static final int contents_text=0x7f080024;
         public static final int downloadApp=0x7f08007f;
-        public static final int eventIdLabel=0x7f08007e;
         public static final int history_clear_text=0x7f080025;
         public static final int history_email_title=0x7f080026;
         public static final int history_send=0x7f080027;
@@ -230,6 +229,7 @@ public final class R {
         public static final int result_wifi=0x7f08006d;
         public static final int sbc_name=0x7f08006e;
         public static final int scanForEvent=0x7f08007d;
+        public static final int scanResultsLabel=0x7f08007e;
         public static final int sendEvent=0x7f08007c;
         public static final int share_name=0x7f08006f;
         public static final int title_about=0x7f080070;

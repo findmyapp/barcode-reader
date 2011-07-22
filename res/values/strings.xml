@@ -3,6 +3,6 @@
     <string name="sendEvent">Store</string>
     <string name="app_name">Barcode Scanner</string>
     <string name="scanForEvent">Scan</string>
-    <string name="eventIdLabel">Scan results:</string>
+    <string name="scanResultsLabel">Scan results:</string>
     <string name="downloadApp">Get app</string>
 </resources>

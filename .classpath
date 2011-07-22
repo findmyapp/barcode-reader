@@ -3,7 +3,6 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
-	<classpathentry kind="lib" path="C:/Users/audun.sorheim/Documents/workspace-sts-2.6.1.RELEASE/NetworkAndroid/google-gson-1.7.1/gson-1.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/BarcodeJar/zxing/core/core.jar"/>
 	<classpathentry kind="lib" path="C:/BarcodeJar/zxing/javase/javase.jar"/>
 	<classpathentry kind="src" path="Xzing_src"/>

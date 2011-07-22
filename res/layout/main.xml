@@ -21,13 +21,13 @@
 			android:stretchColumns="*">
 			<TableRow>
 				<TextView
-					android:id="@+id/eventIdLabel"
-					android:text="@string/eventIdLabel"
+					android:id="@+id/scanResultsTextView"
+					android:text="@string/scanResultsLabel"
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content" />
 				
 				<EditText
-					android:id="@+id/eventFoundEditText"
+					android:id="@+id/scanResultsEditText"
 					android:layout_width="150dip"
 					android:layout_height="wrap_content"
 					android:inputType="text" />		

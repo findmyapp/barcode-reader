@@ -1,28 +1,18 @@
 package dev.barcode;
 
-import android.R.anim;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.TabActivity;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.PopupWindow;
-import android.widget.TabHost;
-import android.widget.TextView;
 
 public class BarcodeReaderDevActivity extends Activity {
-	private Button barcodeButton;
-	private Button sendEventButton;
-	private Button downloadAppButton;
+	private Button scanButton, sendEventButton, downloadAppButton;
 	private RestClient restClient;
-	private EditText eventFoundEditText;
-	private String eventId;
+	private EditText scanResultsEditText;
 	private final String NOINFOFOUND = "No info found";
 
 	/** Called when the activity is first created. */
@@ -32,10 +22,10 @@ public class BarcodeReaderDevActivity extends Activity {
 		setContentView(R.layout.main);
 		restClient = new RestClient();
 
-		eventFoundEditText = (EditText) findViewById(R.id.eventFoundEditText);
+		scanResultsEditText = (EditText) findViewById(R.id.scanResultsEditText);
 		
-		barcodeButton = (Button) findViewById(R.id.BarcodeButton);
-		barcodeButton.setOnClickListener(barCodeButtonListener);
+		scanButton = (Button) findViewById(R.id.BarcodeButton);
+		scanButton.setOnClickListener(scanButtonListener);
 		
 		sendEventButton = (Button) findViewById(R.id.sendEventButton);
 		sendEventButton.setOnClickListener(sendEventButtonListener);
@@ -48,12 +38,10 @@ public class BarcodeReaderDevActivity extends Activity {
 		if (requestCode == 0) {
 			if (resultCode == RESULT_OK) {
 				String contents = intent.getStringExtra("SCAN_RESULT");
-				eventFoundEditText.setText(contents);
-				eventId = contents;
+				scanResultsEditText.setText(contents);
 
 			} else if (resultCode == RESULT_CANCELED) {
-				eventFoundEditText.setText(NOINFOFOUND);
-				eventId = "No info found";
+				scanResultsEditText.setText(NOINFOFOUND);
 			}
 		}
 	}
@@ -65,7 +53,7 @@ public class BarcodeReaderDevActivity extends Activity {
 	 */
 	private void showDialog(CharSequence message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Barcode info");
+		builder.setTitle("Info!");
 		builder.setMessage(message);
 		builder.setPositiveButton("OK", null);
 		builder.show();
@@ -74,7 +62,7 @@ public class BarcodeReaderDevActivity extends Activity {
 	/**
 	 * OnclickListener for barcode button: Starts the barcode reader via intent
 	 */
-	public final Button.OnClickListener barCodeButtonListener = new Button.OnClickListener() {
+	private final Button.OnClickListener scanButtonListener = new Button.OnClickListener() {
 		public void onClick(View v) {
 			Intent intent = new Intent("com.google.zxing.client.android.SCAN");
 			startActivityForResult(intent, 0);
@@ -84,9 +72,9 @@ public class BarcodeReaderDevActivity extends Activity {
 	/**
 	 * OnclickListener for send event button: Sends event to server
 	 */
-	public final Button.OnClickListener sendEventButtonListener = new Button.OnClickListener() {
+	private final Button.OnClickListener sendEventButtonListener = new Button.OnClickListener() {
 		public void onClick(View v) {
-			String eventIdString = eventFoundEditText.getText().toString();
+			String eventIdString = scanResultsEditText.getText().toString();
 			if (!eventIdString.startsWith("01492")) {
 				showDialog("Ikke gyldig event id");
 			} else {
@@ -96,9 +84,12 @@ public class BarcodeReaderDevActivity extends Activity {
 		}
 	};
 	
-	public final Button.OnClickListener downloadAppListener = new Button.OnClickListener() {
+	/**
+	 * Onclicklistener for download app button
+	 */
+	private final Button.OnClickListener downloadAppListener = new Button.OnClickListener() {
 		public void onClick(View v) {
-			String eventIdString = eventFoundEditText.getText().toString();
+			String eventIdString = scanResultsEditText.getText().toString();
 			if (eventIdString.startsWith("http") || eventIdString.startsWith("market")) {
 				downloadApp(eventIdString);
 			} else {
@@ -107,6 +98,10 @@ public class BarcodeReaderDevActivity extends Activity {
 		}
 	};
 	
+	/**
+	 * Method to start an intent with an input URL
+	 * @param URL to some application
+	 */
 	public void downloadApp(String url) {
 		Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 		startActivity(intent);

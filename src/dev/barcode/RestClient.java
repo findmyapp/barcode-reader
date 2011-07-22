@@ -2,28 +2,18 @@ package dev.barcode;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.UnsupportedEncodingException;
+
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.database.Cursor;
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 
 /**
- * Klient for å kommunisere med serveren En del kodeduplisering, bør
- * refaktoreres
+ * Klient for å kommunisere med serveren
  * 
  * @author audun.sorheim
  * 
@@ -32,7 +22,7 @@ import com.google.gson.JsonParser;
 public class RestClient { // emulator
 	private String TAG = "RESTCLIENT";
 	private boolean sent;
-	private Gson gson;
+
 
 	public RestClient() {
 		sent = false;
@@ -42,7 +32,7 @@ public class RestClient { // emulator
 	 * Tar inn et event nummer og sender det til eventStream
 	 * 
 	 * @param eventNumber
-	 * @return
+	 * @return true if event was successfully sent, false if not
 	 */
 	public boolean sendEventToServer(String userId, String eventNumber) {
 		String URL = "http://findmyapp.net/findmyapp/user/" + userId
@@ -57,13 +47,11 @@ public class RestClient { // emulator
 	 */
 	private InputStream postEventStream(String URL) {
 		DefaultHttpClient client = new DefaultHttpClient();
+		
 		HttpPost request = new HttpPost(URL);
-
-		// StringEntity entity;
-		// entity = new StringEntity(json);
-		// request.setEntity(entity);
 		request.setHeader("Accept", "application/json");
 		request.setHeader("Content-type", "application/json");
+		
 		try {
 
 			HttpResponse getResponse = client.execute(request);
@@ -85,5 +73,4 @@ public class RestClient { // emulator
 		}
 		return null;
 	}
-
 }
